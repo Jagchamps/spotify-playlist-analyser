@@ -1,0 +1,167 @@
+@import "~bootstrap/scss/bootstrap";
+
+$xs-width: 'only screen and (max-width: 479px)';
+$s-width: 'only screen and (min-width: 480px)';
+$m-width: 'only screen and (min-width: 768px)';
+$l-width: 'only screen and (min-width: 1024px)';
+$xl-width: 'only screen and (min-width: 1280px)';
+$full-width: 'only screen and (min-width: 1600px)';
+
+@mixin mobile {
+	@media #{$xs-width} {
+		@content;
+	}
+}
+
+@mixin small-screen {
+	@media #{$s-width} {
+		@content;
+	}
+}
+
+@mixin medium-screen {
+	@media #{$m-width} {
+		@content;
+	}
+}
+
+@mixin large-screen {
+	@media #{$l-width} {
+		@content;
+	}
+}
+
+@mixin xlarge-screen {
+	@media #{$xl-width} {
+		@content;
+	}
+}
+
+@mixin full-screen {
+	@media #{$full-width} {
+		@content;
+	}
+}
+
+$color-light-text: #313B44;
+$color-light-highlight: #005E7A;
+$color-light-bg: #D3DADF;
+$color-dark-text: #c3b6a2;
+$color-dark-highlight: #fdfaf6;
+$color-dark-bg: #232B32;
+
+:root {
+  --color-page-background: #{$color-light-bg};
+  --color-text: #{$color-light-text};
+  --color-border: #{$color-light-text};
+  --color-article-background: #{$color-light-bg};
+  --color-article-shadow: #{$color-light-bg};
+}
+
+.dark {
+  --color-page-background: #{$color-dark-bg};
+  --color-text: #{$color-dark-text};
+  --color-border: #{$color-dark-text};
+  --color-article-background: #{$color-dark-bg};
+  --color-article-shadow: #{$color-dark-bg};
+}
+
+* {
+  transition: all .05s ease;
+}
+
+html,
+body {
+  background-color: var(--color-page-background);
+  color: var(--color-text);
+  height: 100%;
+}
+
+.login-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.background-wrapper {
+  background-color: var(--color-page-background);
+}
+
+.btn-light {
+  @include button-variant($color-light-text, $color-light-text, darken($color-light-text, 7.5%), darken($color-light-text, 10%), lighten($color-light-text, 10%), darken($color-light-text, 12.5%));
+  color: $color-light-bg;
+}
+
+.btn-dark {
+  @include button-variant($color-dark-text, $color-dark-text, darken($color-dark-text, 7.5%), darken($color-dark-text, 10%), lighten($color-dark-text, 10%), darken($color-dark-text, 12.5%));
+  color: $color-dark-bg;
+}
+
+.btn-outline-light {
+    @include button-outline-variant($color-light-text, color-yiq($color-light-text), lighten($color-light-text,5%), $color-light-text);
+}
+
+.btn-outline-dark {
+  @include button-outline-variant($color-dark-text, color-yiq($color-dark-text), lighten($color-dark-text,5%), $color-dark-text);
+}
+
+.img-wrapper {
+	position: relative;
+	padding-bottom: 100%;
+	height: 0;
+}
+
+.square-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-position: center center;
+  background-size: cover;
+}
+
+.playlist-card-title {
+  height: 48px;
+}
+
+.card {
+  background-color: var(--color-page-background);
+}
+
+.chart-card {
+  min-height: 352px;
+  max-height: 352px;
+
+  @include medium-screen {
+    min-height: 528px;
+  }
+}
+
+table.table > thead > tr > th {
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+table.table > tbody > tr > td {
+  border-color: var(--color-border);
+  color: var(--color-text);
+  font-size: 0.75em;
+  
+  @include small-screen {
+    font-size: 1em;
+  }
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-col {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+}

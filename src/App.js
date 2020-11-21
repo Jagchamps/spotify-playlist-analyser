@@ -1,14 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import "./App.scss";
+import "./styles/App.scss";
 import LoginButton from "./components/LoginButton";
-import PlaylistList from "./components/PlaylistList";
+import PlaylistList from "./components/playlist/PlaylistList";
 import spotify from "./api/Spotify";
-import { TokenContext } from "./context/TokenContext";
-
-export const authEndpoint = "https://accounts.spotify.com/authorize";
-
-const REDIRECT_URI = "http://localhost:3000";
-const scopes = ["user-top-read"];
+import { TokenContext } from "./contexts/TokenContext";
+import Header from "./components/Header";
 
 const hash = window.location.hash
   .substring(1)
@@ -57,29 +53,19 @@ const App = () => {
         sessionStorage.setItem("token", null);
       });
 
-      if (_playlists) {
-        setPlaylists(_playlists.data.items);
-      }
+    if (_playlists) {
+      setPlaylists(_playlists.data.items);
+    }
   };
 
   return (
-    <div className="App">
-      <h1>Datafy</h1>
+    <div className="app">
+      <Header />
 
-      {!token && (
-        <LoginButton
-          authEndpoint={authEndpoint}
-          redirectUri={REDIRECT_URI}
-          scopes={scopes}
-        />
-      )}
-      {token && (
-        <>
-          {playlists !== null && Object.keys(playlists).length > 0 ? (
-            <PlaylistList playlists={playlists} />
-          ) : null}
-        </>
-      )}
+      {!token && <LoginButton />}
+      {token && playlists !== null && Object.keys(playlists).length > 0 ? (
+        <PlaylistList playlists={playlists} />
+      ) : null}
     </div>
   );
 };

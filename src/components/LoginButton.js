@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
-const SPOTIFY_CLIENT_ID = '5c2f7edf84cb4a85a05d4ad6408b4ecc';
+const LoginButton = () => {
+  const { isLightTheme } = useContext(ThemeContext);
 
-const LoginButton = ({ authEndpoint, redirectUri, scopes }) => {
+  const scopes = ["user-top-read"];
+
   return (
-    <div>
-      <h2>Login to view you Spotify stats</h2>
-      <a
-        href={`${authEndpoint}?client_id=${SPOTIFY_CLIENT_ID}&redirect_uri=${redirectUri}&scope=${scopes.join("%20%")}&response_type=token&show_dialog=true`}
-      >
-        Login to Spotify
-      </a>
-    </div>
+    <section className="container login-container">
+      <div className="row align-items-center">
+        <div className="col">
+          <p></p>
+          <h2 className="text-center">Login to analyse your Spotify playlists</h2>
+          <div className="btn-wrapper">
+            <a
+              className={`btn btn-${isLightTheme ? "light" : "dark"}`}
+              href={`https://accounts.spotify.com/authorize?client_id=${
+                process.env.REACT_APP_SPOTIFY_CLIENT_ID
+              }&redirect_uri=${
+                process.env.REACT_APP_REDIRECT_URI
+              }&scope=${scopes.join(
+                "%20%"
+              )}&response_type=token&show_dialog=true`}
+            >
+              Login to Spotify
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   );
-}
+};
 
 export default LoginButton;
