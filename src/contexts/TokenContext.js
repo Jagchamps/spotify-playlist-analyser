@@ -4,7 +4,7 @@ export const TokenContext = createContext();
 
 class TokenContextProvider extends Component {
   state = {
-    token: null,
+    token: sessionStorage.getItem('token') || null,
   };
 
   setToken = (token) => {

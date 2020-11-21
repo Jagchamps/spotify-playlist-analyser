@@ -3,13 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import "bootstrap/dist/css/bootstrap.css";
-import TokenContextProvider from "./context/TokenContext";
+import TokenContextProvider from "./contexts/TokenContext";
+import ThemeContextProvider from "./contexts/ThemeContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <TokenContextProvider>
-      <App />
+      <ThemeContextProvider>
+        <App />
+      </ThemeContextProvider>
     </TokenContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
