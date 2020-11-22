@@ -1,5 +1,6 @@
 {
   "name": "spotify-playlist-analyser",
+  "homepage": "https://supertonic.jonathanchampion.dev/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +10,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
+    "netlify-cli": "^2.68.7",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
